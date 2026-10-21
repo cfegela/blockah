@@ -1,18 +1,6 @@
 # Blockah
 
-**Blockah** is a minimalist, privacy-first Android app designed to block distracting websites in Google Chrome without the bloat, battery drain, tracking, subscriptions, and VPN overhead of commercial blockers like BlockSite.
-
----
-
-## Why Blockah instead of BlockSite?
-
-| Feature | BlockSite | Blockah |
-| :--- | :--- | :--- |
-| **Telemetry / Tracking** | Extensive analytics & tracking | **Zero (100% Offline)** |
-| **Permissions** | Internet, VPN, Accounts, History | **No `INTERNET` permission** |
-| **Pricing** | Subscription / Paywalls | **100% Free & Open Source** |
-| **Battery Impact** | Heavy background services | **Minimal** (sleeps unless Chrome is active) |
-| **VPN Slot** | Consumes system VPN slot | **Free** (Accessibility-based) |
+**Blockah** is a minimalist, privacy-first Android app designed to block distracting websites in Google Chrome without the bloat and overhead of commercial blockers like BlockSite.
 
 ---
 
