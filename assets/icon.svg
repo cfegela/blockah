@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="288" height="288">
+  <circle cx="36" cy="36" r="35" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <!-- Outer octagon stopsign (R=26, center 36,36) -->
+  <polygon points="60.0,46.0 46.0,60.0 26.0,60.0 12.0,46.0 12.0,26.0 26.0,12.0 46.0,12.0 60.0,26.0" fill="none" stroke="#1A73E8" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Inner filled octagon stopsign (R=18, center 36,36) -->
+  <polygon points="52.6,42.9 42.9,52.6 29.1,52.6 19.4,42.9 19.4,29.1 29.1,19.4 42.9,19.4 52.6,29.1" fill="#1A73E8"/>
+</svg>

@@ -1,0 +1,1 @@
+# Blockah Proguard rules

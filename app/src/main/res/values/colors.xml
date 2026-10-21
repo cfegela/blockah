@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="helmet_blue">#1565C0</color>
+    <color name="helmet_blue_light">#1E88E5</color>
+    <color name="helmet_blue_dark">#0D47A1</color>
+    <color name="facemask_color">#263238</color>
+</resources>

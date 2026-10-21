@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Blockah</string>
+    <string name="accessibility_service_label">Blockah Chrome Interceptor</string>
+    <string name="accessibility_service_description">Blockah inspects Chrome address URLs locally on your device to block distracting websites and keep you focused. No data ever leaves your phone.</string>
+</resources>
