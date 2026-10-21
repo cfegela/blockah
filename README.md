@@ -1,12 +1,10 @@
-# Blockah 🛑
-
-> Self-block websites. Stay focused. Be healthy.
+# Blockah
 
 **Blockah** is a minimalist, privacy-first Android app designed to block distracting websites in Google Chrome without the bloat, battery drain, tracking, subscriptions, and VPN overhead of commercial blockers like BlockSite.
 
 ---
 
-## ⚡ Why Blockah instead of BlockSite?
+## Why Blockah instead of BlockSite?
 
 | Feature | BlockSite | Blockah |
 | :--- | :--- | :--- |
@@ -18,7 +16,7 @@
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 1. **Accessibility Interception**: Blockah registers an [`AccessibilityService`](file:///Users/chrisfegela/git/cfeg/blockah/app/src/main/java/com/blockah/service/BlockahAccessibilityService.kt) scoped specifically to Chrome packages (`com.android.chrome`, `com.chrome.beta`, `com.chrome.dev`, `com.chrome.canary`, `org.chromium.chrome`).
 2. **Smart Focus & Autocomplete Awareness**: Blockah detects when you are actively typing in the address bar and ignores suggestions/predictions until navigation is actually committed, preventing premature blocking while typing.
@@ -27,7 +25,7 @@
 
 ---
 
-## 🚀 Building & Installing
+## Building & Installing
 
 ### Prerequisites
 - JDK 17+
@@ -47,7 +45,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 ---
 
-## 📱 Quick Setup on Your Phone
+## Quick Setup on Your Phone
 
 1. Open **Blockah** on your device.
 2. Tap **"Enable Blockah in Settings"** on the banner.
@@ -57,7 +55,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 ---
 
-## 🧪 Testing
+## Testing
 
 Run the local unit tests:
 ```bash
