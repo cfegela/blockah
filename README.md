@@ -2,8 +2,6 @@
 
 **Blockah** is a minimalist, privacy-first Android app designed to block distracting websites in Google Chrome without the bloat and overhead of commercial blockers like BlockSite.
 
----
-
 ## How It Works
 
 1. **Accessibility Interception**: Blockah registers an [`AccessibilityService`](file:///Users/chrisfegela/git/cfeg/blockah/app/src/main/java/com/blockah/service/BlockahAccessibilityService.kt) scoped specifically to Chrome packages (`com.android.chrome`, `com.chrome.beta`, `com.chrome.dev`, `com.chrome.canary`, `org.chromium.chrome`).
