@@ -3,7 +3,9 @@ package com.blockah.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Browser
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,6 +29,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,35 +49,57 @@ import com.blockah.ui.theme.TextSecondary
 
 class BlockedActivity : ComponentActivity() {
 
+    private var createdTime: Long = 0L
+    private val currentDomain = mutableStateOf("This website")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        createdTime = System.currentTimeMillis()
+        currentDomain.value = intent.getStringExtra(EXTRA_BLOCKED_DOMAIN) ?: "This website"
 
-        val domain = intent.getStringExtra(EXTRA_BLOCKED_DOMAIN) ?: "This website"
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Ignore accidental back events that arrive within 600ms of launch (e.g. from service cleanup)
+                if (System.currentTimeMillis() - createdTime < 600L) {
+                    return
+                }
+                navigateToChromeHome()
+            }
+        })
 
         setContent {
             BlockahTheme {
                 BlockedScreen(
-                    domain = domain,
+                    domain = currentDomain.value,
                     onReturnToChrome = { navigateToChromeHome() }
                 )
             }
         }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        createdTime = System.currentTimeMillis()
+        currentDomain.value = intent.getStringExtra(EXTRA_BLOCKED_DOMAIN) ?: "This website"
+    }
+
     /**
      * Navigates Chrome to its homepage/Google search instead of closing Chrome,
-     * leaving the browser active and away from the blocked URL.
+     * leaving the browser active with a fresh tab and away from the blocked URL.
      */
     private fun navigateToChromeHome() {
         val browserPackage = intent.getStringExtra(EXTRA_PACKAGE_NAME) ?: "com.android.chrome"
         val chromeIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com")).apply {
             setPackage(browserPackage)
+            putExtra(Browser.EXTRA_APPLICATION_ID, browserPackage)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
         try {
             startActivity(chromeIntent)
         } catch (_: Exception) {
             val fallbackIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com")).apply {
+                putExtra(Browser.EXTRA_APPLICATION_ID, browserPackage)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
             startActivity(fallbackIntent)
@@ -84,6 +109,9 @@ class BlockedActivity : ComponentActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
+        if (System.currentTimeMillis() - createdTime < 600L) {
+            return
+        }
         // Safely navigate Chrome away from blocked URL rather than re-triggering loop
         navigateToChromeHome()
     }
